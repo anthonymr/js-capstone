@@ -60,3 +60,28 @@
   display: flex;
   justify-content: center;
 }
+
+#comment-popup__comments_title {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#comment-popup__comments_list {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#comment-popup__comments_list > li {
+  display: flex;
+  gap: 10px;
+}
+
+#comment-popup__comments_list > li > div:nth-child(1) {
+  color: var(--gray);
+}
+
+#comment-popup__comments_list > li > div:nth-child(2) {
+  font-weight: 700;
+}
