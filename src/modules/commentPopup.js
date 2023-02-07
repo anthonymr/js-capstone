@@ -93,10 +93,10 @@ export default class CommentPopup {
     .then((response) => response.json())
 
   #drawComments(comments) {
-    const parentUl = document.getElementById('comment-popup__comments_list');
-    parentUl.innerHTML = '';
+    this.parentUl = document.getElementById('comment-popup__comments_list');
+    this.parentUl.innerHTML = '';
 
-    comments.forEach(comment => {
+    comments.forEach((comment) => {
       const newLiElement = document.createElement('li');
       const divDate = document.createElement('div');
       const divUser = document.createElement('div');
@@ -110,9 +110,7 @@ export default class CommentPopup {
       newLiElement.appendChild(divUser);
       newLiElement.appendChild(divComment);
 
-      parentUl.appendChild(newLiElement);
+      this.parentUl.appendChild(newLiElement);
     });
-
-    console.log(comments);
   }
 }
