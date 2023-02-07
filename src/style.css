@@ -1,6 +1,7 @@
 :root {
   --blue: #0080ff;
   --black: #0d1117;
+  --white: #fff;
   --margin: 20px;
   --padding: 20px;
   --border: 1px solid black;
@@ -14,8 +15,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: #fff;
-  color: #0d1117;
+  background: var(--white);
+  color: var(--black);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -24,7 +25,7 @@ a {
 }
 
 .blue {
-  color: blue;
+  color: var(--blue);
 }
 
 /* Header Section */
@@ -52,13 +53,13 @@ a {
 .navMenu {
   display: block;
   background: transparent;
-  border: 1px solid #333;
+  border: 1px solid var(--black);
   padding: 3px 5px;
   align-self: center;
 }
 
 .navMenu:active {
-  background: #333;
+  background: var(--black);
 }
 
 .navbar {
@@ -81,7 +82,7 @@ a {
   margin: 0;
   padding: 50px 0;
   gap: 20px;
-  background: #1b2028;
+  background: var(--black);
 }
 
 .desktopNavs {
@@ -98,12 +99,12 @@ a {
   display: block;
   padding: 15px 20px;
   margin-bottom: 5px;
-  background: #1b2028;
+  background: var(--black);
 }
 
 .nav-link:hover {
-  color: #fff;
-  background: #0080ff;
+  color: var(--white);
+  background: var(--blue);
 }
 
 @media screen and (min-width: 768px) {
