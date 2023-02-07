@@ -112,14 +112,14 @@
 #comment-popup__new-comment-form > input {
   line-height: 30px;
   width: 100%;
-  max-width: 300px ;
+  max-width: 300px;
   padding: 0 10px;
 }
 
 #comment-popup__new-comment-form > textarea {
   height: 60px;
   width: 100%;
-  max-width: 300px ;
+  max-width: 300px;
   padding: 10px;
   resize: none;
 }
@@ -127,6 +127,6 @@
 #comment-popup__new-comment-form > button {
   line-height: 30px;
   width: 100%;
-  max-width: 300px ;
+  max-width: 300px;
   padding: 0 10px;
 }

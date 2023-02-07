@@ -126,12 +126,12 @@ export default class CommentPopup {
     fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}`, {
       method: 'POST',
       body: JSON.stringify({
-        "item_id": this.id,
-        "username": username,
-        "comment": insight
+        item_id: this.id,
+        username,
+        comment: insight,
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     })
       .then(() => {
@@ -139,8 +139,7 @@ export default class CommentPopup {
           .then((comments) => {
             this.#drawComments(comments);
           });
-      })
-      .catch(error => console.log(error));
+      });
   }
 
   #setNewCommentEvents() {
