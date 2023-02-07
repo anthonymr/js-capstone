@@ -14,6 +14,8 @@ import {
   closeBtn,
   mobileNavlinks,
 } from './modules/docSelectors.js';
+import { EPISODE_API } from './modules/api.js';
+import fetchEpisodes from './modules/displayItems.js';
 
 const newPopup = new CommentPopup('1', 'comment-popup');
 
@@ -31,3 +33,10 @@ mobileNavlinks.forEach((item) => {
     mobNavGroup.classList.remove('display-flex');
   });
 });
+
+// Display List
+const episodeContainer = document.querySelector('.episodeContainer');
+
+window.onload = () => {
+  fetchEpisodes(EPISODE_API, episodeContainer);
+};
