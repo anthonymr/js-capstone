@@ -5,6 +5,8 @@ export default class CommentPopup {
     this.endPoint = '/shows/';
     this.parentDomElement = document.getElementById(domElementId);
 
+    this.#createBasicHTML();
+
     this.#getTvShow()
       .then(tvShow => {
         this.#drawPopup(tvShow);
@@ -21,6 +23,8 @@ export default class CommentPopup {
     this.#clearDomElement('comment-popup__schedule');
 
     this.#hiddePopupModal();
+
+    this.parentDomElement.innerHTML = '';
   }
 
   #getTvShow = () => fetch(`${this.baseUrl}${this.endPoint}${this.id}`)
@@ -58,6 +62,27 @@ export default class CommentPopup {
   #clearDomElement(id){
     const parentDomElement = document.getElementById(id);
     parentDomElement.innerHTML = '';
+  }
+
+  #createBasicHTML(){
+    this.parentDomElement.innerHTML = `
+      <div>
+        <div class="comment-popup__x-mark">
+          <i class="fa-solid fa-xmark" id="comment-popup__x-mark"></i>
+        </div>
+        <div class="comment-popup__description-container">
+          <span id="comment-popup__image"></span>
+          <div>
+            <span id="comment-popup__title"></span>
+            <div id="comment-popup__language"></div>
+            <div id="comment-popup__genres"></div>
+            <div id="comment-popup__network"></div>
+            <div id="comment-popup__schedule"></div>
+          </div>
+        </div>
+        <span id="comment-popup__summary"></span>
+      </div>
+    `;
   }
 
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
