@@ -119,7 +119,7 @@ a {
   justify-content: center;
 }
 
-.episodeContainer {
+.show-group {
   display: flex;
   list-style: none;
   flex-direction: column;
@@ -195,7 +195,7 @@ a {
   }
 
   /* List Item */
-  .episodeContainer {
+  .show-group {
     flex-direction: row;
     flex-wrap: wrap;
   }

@@ -8,14 +8,15 @@ import '@fortawesome/fontawesome-free/js/fontawesome.js';
 import '@fortawesome/fontawesome-free/js/solid.js';
 import '@fortawesome/fontawesome-free/js/regular.js';
 
-import {
-  menuBtn,
-  mobNavGroup,
-  closeBtn,
-  mobileNavlinks,
-} from './modules/docSelectors.js';
-import { EPISODE_API } from './modules/api.js';
+import { BASE_URL, EPISODE_API } from './modules/api.js';
 import fetchEpisodes from './modules/displayItems.js';
+
+import {
+  closeBtn,
+  menuBtn,
+  mobileNavlinks,
+  mobNavGroup,
+} from './modules/docSelectors.js';
 
 const newPopup = new CommentPopup('1', 'comment-popup');
 
@@ -38,5 +39,5 @@ mobileNavlinks.forEach((item) => {
 const episodeContainer = document.querySelector('.episodeContainer');
 
 window.onload = () => {
-  fetchEpisodes(EPISODE_API, episodeContainer);
+  fetchEpisodes(EPISODE_API, BASE_URL);
 };
