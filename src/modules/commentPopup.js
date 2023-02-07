@@ -1,3 +1,5 @@
+import commentCounter from "./commentCounter";
+
 export default class CommentPopup {
   constructor(tvShowId, domElementId) {
     this.id = tvShowId;
@@ -93,6 +95,13 @@ export default class CommentPopup {
     `;
   }
 
+  #updateCommentCounter(count) {
+    const title = document.getElementById('comment-popup__comments_title');
+    if(count) {
+      title.innerHTML = `Comments (${count})`;
+    }    
+  }
+
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
 
   #hiddePopupModal = () => this.parentDomElement.classList.add('hidden')
@@ -120,6 +129,9 @@ export default class CommentPopup {
 
       this.parentUl.appendChild(newLiElement);
     });
+
+    const commentAmount = commentCounter('comment-popup__comments_list');
+    this.#updateCommentCounter(commentAmount);
   }
 
   #addNewComment(username, insight) {
