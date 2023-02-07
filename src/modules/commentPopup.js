@@ -1,9 +1,9 @@
 export default class CommentPopup {
-  constructor(id) {
-    this.id = id;
+  constructor(tvShowId, domElementId) {
+    this.id = tvShowId;
     this.baseUrl = 'https://api.tvmaze.com';
     this.endPoint = '/shows/';
-    this.parentDomElement = document.getElementById('comment-popup');
+    this.parentDomElement = document.getElementById(domElementId);
 
     this.#getTvShow()
       .then(tvShow => {

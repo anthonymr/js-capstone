@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-free/js/regular.js';
 
 import CommentPopup from './modules/commentPopup.js';
 
-const newPopup = new CommentPopup('1');
+const newPopup = new CommentPopup('1', 'comment-popup');
 
 import {
   menuBtn,
