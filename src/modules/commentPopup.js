@@ -13,6 +13,8 @@ export default class CommentPopup {
 
     this.#createBasicHTML();
 
+    this.#setNewCommentEvents();
+
     this.#getTvShow()
       .then((tvShow) => {
         this.#drawPopup(tvShow);
@@ -81,6 +83,12 @@ export default class CommentPopup {
         <span id="comment-popup__summary"></span>
         <h2 id="comment-popup__comments_title">Comments</h2>
         <ul id="comment-popup__comments_list"></ul>
+        <h3 id="comment-popup__new-comment-title">Add new comment</h3>
+        <form id="comment-popup__new-comment-form">
+          <input placeholder="Your name" id="comment-popup__new-comment-username">
+          <textarea placeholder="Your insights" id="comment-popup__new-comment-insight"></textarea>
+          <button id="comment-popup__new-comment-submit">Comment</button>
+        </form>
       </div>
     `;
   }
@@ -111,6 +119,44 @@ export default class CommentPopup {
       newLiElement.appendChild(divComment);
 
       this.parentUl.appendChild(newLiElement);
+    });
+  }
+
+  #addNewComment(username, insight) {
+    fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        item_id: this.id,
+        username,
+        comment: insight,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        this.#getComments(this.id)
+          .then((comments) => {
+            this.#drawComments(comments);
+          });
+      });
+  }
+
+  #setNewCommentEvents() {
+    this.newCommentUserName = document.getElementById('comment-popup__new-comment-username');
+    this.newCommentInsight = document.getElementById('comment-popup__new-comment-insight');
+    this.newCommentSubmit = document.getElementById('comment-popup__new-comment-submit');
+
+    this.newCommentSubmit.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (!this.newCommentUserName.value || !this.newCommentInsight.value) {
+        return;
+      }
+
+      this.#addNewComment(this.newCommentUserName.value, this.newCommentInsight.value);
+      this.newCommentUserName.value = '';
+      this.newCommentInsight.value = '';
     });
   }
 }
