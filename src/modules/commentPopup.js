@@ -5,11 +5,22 @@ export default class CommentPopup {
     this.endPoint = '/shows/';
     this.parentDomElement = document.getElementById(domElementId);
 
+    this.parentDomElement.classList.add('hidden');
+
+    this.involvApiBaseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
+    this.involvApiKey = 'cTATStFavmk0jriD21vx';
+    this.involvApiCommentsEndpoint = `/apps/${this.involvApiKey}/comments`;
+
     this.#createBasicHTML();
 
     this.#getTvShow()
       .then((tvShow) => {
         this.#drawPopup(tvShow);
+      });
+
+    this.#getComments(tvShowId)
+      .then((comments) => {
+        this.#drawComments(comments);
       });
   }
 
@@ -68,6 +79,8 @@ export default class CommentPopup {
           </div>
         </div>
         <span id="comment-popup__summary"></span>
+        <h2 id="comment-popup__comments_title">Comments</h2>
+        <ul id="comment-popup__comments_list"></ul>
       </div>
     `;
   }
@@ -75,4 +88,29 @@ export default class CommentPopup {
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
 
   #hiddePopupModal = () => this.parentDomElement.classList.add('hidden')
+
+  #getComments = (id) => fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}?item_id=${id}`)
+    .then((response) => response.json())
+
+  #drawComments(comments) {
+    this.parentUl = document.getElementById('comment-popup__comments_list');
+    this.parentUl.innerHTML = '';
+
+    comments.forEach((comment) => {
+      const newLiElement = document.createElement('li');
+      const divDate = document.createElement('div');
+      const divUser = document.createElement('div');
+      const divComment = document.createElement('div');
+
+      divDate.innerHTML = comment.creation_date;
+      divUser.innerHTML = comment.username;
+      divComment.innerHTML = comment.comment;
+
+      newLiElement.appendChild(divDate);
+      newLiElement.appendChild(divUser);
+      newLiElement.appendChild(divComment);
+
+      this.parentUl.appendChild(newLiElement);
+    });
+  }
 }
