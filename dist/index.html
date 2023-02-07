@@ -11,30 +11,47 @@
       rel="stylesheet"
     />
     <title>Tv Guide</title>
-  <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
+    <script defer src="runtime.bundle.js"></script>
+    <script defer src="main.bundle.js"></script>
+  </head>
   <body>
     <!-- Header Section -->
     <header class="header">
       <nav class="navbar">
         <div class="brand"><a href="" class="logo blue">Tv Logo</a></div>
         <button class="navMenu" id="mobileMenu">
-            <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-bars fa-2xl"></i>
         </button>
         <ul class="mobileNavs">
           <button id="closeMenu" class="btn-cross">
-            <i class="fa-solid fa-xmark"></i>
+            <i class="fa-2xl fa-solid fa-xmark"></i>
           </button>
           <li class="nav-item"><a href="#" class="nav-link blue">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link blue">Seasons</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link blue">Seasons</a>
+          </li>
           <li class="nav-item"><a href="#" class="nav-link blue">Movies</a></li>
         </ul>
         <ul class="desktopNavs">
           <li class="nav-item"><a href="#" class="nav-link blue">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link blue">Seasons</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link blue">Seasons</a>
+          </li>
           <li class="nav-item"><a href="#" class="nav-link blue">Movies</a></li>
         </ul>
       </nav>
     </header>
-    <h1>Hello webpack!</h1>
+
+    <main class="main-container">
+      <section class="tv-shows">
+        <ul class="show-group">
+          <!-- ShowData will place here -->
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h3>Created by Eric and Anthony at Microverse Inc. under CC license</h3>
+    </footer>
   </body>
 </html>

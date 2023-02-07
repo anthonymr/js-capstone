@@ -9,6 +9,8 @@ import {
   closeBtn,
   mobileNavlinks,
 } from './modules/docSelectors.js';
+import { EPISODE_API } from './modules/apis.js';
+import fetchEpisodes from './modules/displayItems.js';
 
 // toggle the menu
 menuBtn.addEventListener('click', () => {
@@ -24,3 +26,10 @@ mobileNavlinks.forEach((item) => {
     mobNavGroup.classList.remove('display-flex');
   });
 });
+
+// List Items
+const episodeContainer = document.querySelector('.episodeContainer');
+
+window.onload = () => {
+  fetchEpisodes(EPISODE_API, episodeContainer);
+};
