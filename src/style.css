@@ -2,9 +2,8 @@
   --blue: #0080ff;
   --black: #0d1117;
   --white: #fff;
-  --margin: 20px;
-  --padding: 20px;
-  --border: 1px solid black;
+  --border: 1px solid rgb(222, 222, 222);
+  --light-background: rgb(247, 247, 247);
 }
 
 * {
@@ -109,8 +108,8 @@ a {
 
 .footer {
   line-height: 50px;
-  background-color: rgb(247, 247, 247);
-  border-top: 1px solid rgb(222, 222, 222);
+  background-color: var(--light-background);
+  border-top: var(--border);
   padding: 20px 200px;
 }
 
