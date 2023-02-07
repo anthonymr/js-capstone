@@ -8,27 +8,19 @@ export default class CommentPopup {
     this.#createBasicHTML();
 
     this.#getTvShow()
-      .then(tvShow => {
+      .then((tvShow) => {
         this.#drawPopup(tvShow);
       });
   }
 
   destroy() {
-    this.#clearDomElement('comment-popup__image');
-    this.#clearDomElement('comment-popup__title');
-    this.#clearDomElement('comment-popup__summary');
-    this.#clearDomElement('comment-popup__language');
-    this.#clearDomElement('comment-popup__genres');
-    this.#clearDomElement('comment-popup__network');
-    this.#clearDomElement('comment-popup__schedule');
-
     this.#hiddePopupModal();
 
     this.parentDomElement.innerHTML = '';
   }
 
   #getTvShow = () => fetch(`${this.baseUrl}${this.endPoint}${this.id}`)
-    .then(resp => resp.json())
+    .then((resp) => resp.json())
 
   #drawPopup(tvShow) {
     this.#createDomElement('comment-popup__image', 'img', 'src', tvShow.image.medium);
@@ -40,31 +32,26 @@ export default class CommentPopup {
     this.#createDomElement('comment-popup__schedule', 'span', 'innerHTML', tvShow.schedule.time, 'Schedule');
 
     const xMark = document.getElementById('comment-popup__x-mark');
-    xMark.addEventListener('click', (e) => this.destroy());
+    xMark.addEventListener('click', () => this.destroy());
 
     this.#showPopupModal();
   }
 
   #createDomElement(id, elementType, attribute, attributeData, title = null) {
-    const parentDomElement = document.getElementById(id);
-    
-    if(title) {
+    this.auxDomElement = document.getElementById(id);
+
+    if (title) {
       const titleDomElement = document.createElement('label');
       titleDomElement.innerHTML = title;
-      parentDomElement.appendChild(titleDomElement);
+      this.auxDomElement.appendChild(titleDomElement);
     }
 
     const newDomElement = document.createElement(elementType);
     newDomElement[attribute] = attributeData;
-    parentDomElement.appendChild(newDomElement);
+    this.auxDomElement.appendChild(newDomElement);
   }
 
-  #clearDomElement(id){
-    const parentDomElement = document.getElementById(id);
-    parentDomElement.innerHTML = '';
-  }
-
-  #createBasicHTML(){
+  #createBasicHTML() {
     this.parentDomElement.innerHTML = `
       <div>
         <div class="comment-popup__x-mark">
@@ -86,5 +73,6 @@ export default class CommentPopup {
   }
 
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
+
   #hiddePopupModal = () => this.parentDomElement.classList.add('hidden')
 }
