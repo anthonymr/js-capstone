@@ -1,1 +1,40 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wbpack Exercise</title><script defer="defer" src="main.js"></script></head><body><h1>Hello webpack!</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tv Guide</title>
+  <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="brand"><a href="" class="logo blue">Tv Logo</a></div>
+        <button class="navMenu" id="mobileMenu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul class="mobileNavs">
+          <button id="closeMenu" class="btn-cross">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <li class="nav-item"><a href="#" class="nav-link blue">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link blue">Seasons</a></li>
+          <li class="nav-item"><a href="#" class="nav-link blue">Movies</a></li>
+        </ul>
+        <ul class="desktopNavs">
+          <li class="nav-item"><a href="#" class="nav-link blue">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link blue">Seasons</a></li>
+          <li class="nav-item"><a href="#" class="nav-link blue">Movies</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1>Hello webpack!</h1>
+  </body>
+</html>
