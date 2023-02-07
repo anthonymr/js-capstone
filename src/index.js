@@ -17,7 +17,7 @@ import {
 import { EPISODE_API } from './modules/api.js';
 import fetchEpisodes from './modules/displayItems.js';
 
-const newPopup = new CommentPopup('1', 'comment-popup');
+const newPopup = new CommentPopup('2', 'comment-popup');
 
 // toggle the menu
 menuBtn.addEventListener('click', () => {

@@ -97,9 +97,7 @@ export default class CommentPopup {
 
   #updateCommentCounter(count) {
     this.commentTitle = document.getElementById('comment-popup__comments_title');
-    if (count) {
-      this.commentTitle.innerHTML = `Comments (${count})`;
-    }
+    this.commentTitle.innerHTML = `Comments (${count})`;
   }
 
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
