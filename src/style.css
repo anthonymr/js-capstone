@@ -4,6 +4,7 @@
   --white: #fff;
   --border: 1px solid rgb(222, 222, 222);
   --light-background: rgb(247, 247, 247);
+  --gray: rgb(188, 188, 188);
 }
 
 * {
