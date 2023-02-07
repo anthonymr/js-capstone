@@ -1,10 +1,6 @@
-const commentCounter = function (domContainerId) {
+const commentCounter = (domContainerId) => {
   const container = document.querySelectorAll(`#${domContainerId} li`);
-  if (NodeList.prototype.isPrototypeOf(container)) {
-    return container.length;
-  } else {
-    return 0;
-  }
-}
+  return container.length;
+};
 
 export default commentCounter;

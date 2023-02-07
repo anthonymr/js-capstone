@@ -1,4 +1,4 @@
-import commentCounter from "./commentCounter";
+import commentCounter from './commentCounter.js';
 
 export default class CommentPopup {
   constructor(tvShowId, domElementId) {
@@ -96,10 +96,10 @@ export default class CommentPopup {
   }
 
   #updateCommentCounter(count) {
-    const title = document.getElementById('comment-popup__comments_title');
-    if(count) {
-      title.innerHTML = `Comments (${count})`;
-    }    
+    this.commentTitle = document.getElementById('comment-popup__comments_title');
+    if (count) {
+      this.commentTitle.innerHTML = `Comments (${count})`;
+    }
   }
 
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
@@ -113,22 +113,24 @@ export default class CommentPopup {
     this.parentUl = document.getElementById('comment-popup__comments_list');
     this.parentUl.innerHTML = '';
 
-    comments.forEach((comment) => {
-      const newLiElement = document.createElement('li');
-      const divDate = document.createElement('div');
-      const divUser = document.createElement('div');
-      const divComment = document.createElement('div');
+    if (Array.isArray(comments)) {
+      comments.forEach((comment) => {
+        const newLiElement = document.createElement('li');
+        const divDate = document.createElement('div');
+        const divUser = document.createElement('div');
+        const divComment = document.createElement('div');
 
-      divDate.innerHTML = comment.creation_date;
-      divUser.innerHTML = comment.username;
-      divComment.innerHTML = comment.comment;
+        divDate.innerHTML = comment.creation_date;
+        divUser.innerHTML = comment.username;
+        divComment.innerHTML = comment.comment;
 
-      newLiElement.appendChild(divDate);
-      newLiElement.appendChild(divUser);
-      newLiElement.appendChild(divComment);
+        newLiElement.appendChild(divDate);
+        newLiElement.appendChild(divUser);
+        newLiElement.appendChild(divComment);
 
-      this.parentUl.appendChild(newLiElement);
-    });
+        this.parentUl.appendChild(newLiElement);
+      });
+    }
 
     const commentAmount = commentCounter('comment-popup__comments_list');
     this.#updateCommentCounter(commentAmount);
