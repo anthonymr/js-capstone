@@ -1,6 +1,7 @@
 import './style.css';
-import './img/menu.png';
-import './img/close.png';
+import '@fortawesome/fontawesome-free/js/fontawesome.js';
+import '@fortawesome/fontawesome-free/js/solid.js';
+import '@fortawesome/fontawesome-free/js/regular.js';
 
 import {
   menuBtn,
