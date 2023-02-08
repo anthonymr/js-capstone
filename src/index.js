@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-import CommentPopup from './modules/commentPopup.js';
-
 import './style.css';
 import './css/commentPopup.css';
 
@@ -18,8 +15,6 @@ import {
   mobNavGroup,
 } from './modules/docSelectors.js';
 
-const newPopup = new CommentPopup('2', 'comment-popup');
-
 // toggle the menu
 menuBtn.addEventListener('click', () => {
   mobNavGroup.classList.toggle('display-flex');
@@ -34,9 +29,6 @@ mobileNavlinks.forEach((item) => {
     mobNavGroup.classList.remove('display-flex');
   });
 });
-
-// Display List
-const episodeContainer = document.querySelector('.episodeContainer');
 
 window.onload = () => {
   fetchEpisodes(EPISODE_API, BASE_URL);
