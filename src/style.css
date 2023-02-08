@@ -109,9 +109,7 @@ a {
 
 /* Display Items */
 .main-container {
-  display: flex;
-  margin: 70px 0;
-  flex-direction: column;
+  margin: 20px 0;
 }
 
 .tv-shows {
@@ -138,7 +136,6 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1000px;
   gap: 15px;
 }
 
@@ -212,9 +209,5 @@ a {
   .show-group {
     flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  .show-item {
-    width: 32%;
   }
 }
