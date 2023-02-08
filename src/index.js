@@ -18,7 +18,7 @@ import {
   mobNavGroup,
 } from './modules/docSelectors.js';
 
-const newPopup = new CommentPopup('1', 'comment-popup');
+const newPopup = new CommentPopup('2', 'comment-popup');
 
 // toggle the menu
 menuBtn.addEventListener('click', () => {

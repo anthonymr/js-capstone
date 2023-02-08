@@ -1,3 +1,5 @@
+import commentCounter from './commentCounter.js';
+
 export default class CommentPopup {
   constructor(tvShowId, domElementId) {
     this.id = tvShowId;
@@ -12,6 +14,8 @@ export default class CommentPopup {
     this.involvApiCommentsEndpoint = `/apps/${this.involvApiKey}/comments`;
 
     this.#createBasicHTML();
+
+    this.#setNewCommentEvents();
 
     this.#getTvShow()
       .then((tvShow) => {
@@ -81,8 +85,19 @@ export default class CommentPopup {
         <span id="comment-popup__summary"></span>
         <h2 id="comment-popup__comments_title">Comments</h2>
         <ul id="comment-popup__comments_list"></ul>
+        <h3 id="comment-popup__new-comment-title">Add new comment</h3>
+        <form id="comment-popup__new-comment-form">
+          <input placeholder="Your name" id="comment-popup__new-comment-username">
+          <textarea placeholder="Your insights" id="comment-popup__new-comment-insight"></textarea>
+          <button id="comment-popup__new-comment-submit">Comment</button>
+        </form>
       </div>
     `;
+  }
+
+  #updateCommentCounter(count) {
+    this.commentTitle = document.getElementById('comment-popup__comments_title');
+    this.commentTitle.innerHTML = `Comments (${count})`;
   }
 
   #showPopupModal = () => this.parentDomElement.classList.remove('hidden')
@@ -96,21 +111,64 @@ export default class CommentPopup {
     this.parentUl = document.getElementById('comment-popup__comments_list');
     this.parentUl.innerHTML = '';
 
-    comments.forEach((comment) => {
-      const newLiElement = document.createElement('li');
-      const divDate = document.createElement('div');
-      const divUser = document.createElement('div');
-      const divComment = document.createElement('div');
+    if (Array.isArray(comments)) {
+      comments.forEach((comment) => {
+        const newLiElement = document.createElement('li');
+        const divDate = document.createElement('div');
+        const divUser = document.createElement('div');
+        const divComment = document.createElement('div');
 
-      divDate.innerHTML = comment.creation_date;
-      divUser.innerHTML = comment.username;
-      divComment.innerHTML = comment.comment;
+        divDate.innerHTML = comment.creation_date;
+        divUser.innerHTML = comment.username;
+        divComment.innerHTML = comment.comment;
 
-      newLiElement.appendChild(divDate);
-      newLiElement.appendChild(divUser);
-      newLiElement.appendChild(divComment);
+        newLiElement.appendChild(divDate);
+        newLiElement.appendChild(divUser);
+        newLiElement.appendChild(divComment);
 
-      this.parentUl.appendChild(newLiElement);
+        this.parentUl.appendChild(newLiElement);
+      });
+    }
+
+    const commentAmount = commentCounter('comment-popup__comments_list');
+    this.#updateCommentCounter(commentAmount);
+  }
+
+  #addNewComment(username, insight) {
+    fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        item_id: this.id,
+        username,
+        comment: insight,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        this.#getComments(this.id)
+          .then((comments) => {
+            this.#drawComments(comments);
+          });
+      });
+  }
+
+  #setNewCommentEvents() {
+    this.newCommentUserName = document.getElementById('comment-popup__new-comment-username');
+    this.newCommentInsight = document.getElementById('comment-popup__new-comment-insight');
+    this.newCommentSubmit = document.getElementById('comment-popup__new-comment-submit');
+
+    this.newCommentSubmit.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (!this.newCommentUserName.value || !this.newCommentInsight.value) {
+        return;
+      }
+
+      this.#addNewComment(this.newCommentUserName.value, this.newCommentInsight.value);
+      this.newCommentUserName.value = '';
+      this.newCommentInsight.value = '';
     });
   }
 }
