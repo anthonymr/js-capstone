@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import commentCounter from "../modules/commentCounter.js";
+import commentCounter from '../modules/commentCounter.js';
 
 describe('commentCounter', () => {
   test('List with 3 items should return 3', () => {
@@ -11,7 +11,7 @@ describe('commentCounter', () => {
         <li><div>2023-02-07</div><div>Juan</div><div></div></li>
         <li><div>2023-02-07</div><div>Pedro</div><div>Very good show</div></li>
       </ul>
-    `
+    `;
     expect(commentCounter('testing-list')).toBe(3);
   });
 
@@ -20,7 +20,7 @@ describe('commentCounter', () => {
       <ul id="testing-list">
         <li><div>2023-02-07</div><div>Anthony</div><div>This is a great TV show</div></li>
       </ul>
-    `
+    `;
     expect(commentCounter('testing-list')).toBe(1);
   });
 
@@ -28,7 +28,7 @@ describe('commentCounter', () => {
     document.body.innerHTML = `
       <ul id="testing-list">
       </ul>
-    `
+    `;
     expect(commentCounter('testing-list')).toBe(0);
   });
 
@@ -66,7 +66,7 @@ describe('commentCounter', () => {
         <li><div>2023-02-07</div><div>Juan</div><div></div></li>
         <li><div>2023-02-07</div><div>Pedro</div><div>Very good show</div></li>
       </ul>
-    `
+    `;
     expect(commentCounter('testing-list')).toBe(30);
   });
 
@@ -75,8 +75,7 @@ describe('commentCounter', () => {
       <ul id="testing-list">
         <li><div>2023-02-07</div><div>Anthony</div><div>This is a great TV show</div></li>
       </ul>
-    `
+    `;
     expect(commentCounter('testing-list2')).toBe(0);
   });
 });
-
