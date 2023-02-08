@@ -6,4 +6,4 @@ export const mobileNavlinks = document.querySelectorAll(
 export const mobNavGroup = document.querySelector('.mobileNavs');
 export const modalContainer = document.querySelector('.popup-modal');
 export const listItemsContainer = document.querySelector('.show-group');
-export const itemCountContainer = document.getElementById('count_item');
+export const itemCountContainer = document.getElementById('count-item');

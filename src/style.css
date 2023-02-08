@@ -117,6 +117,16 @@ a {
 .tv-shows {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.show-titles {
+  text-align: center;
+}
+
+#count-item {
+  color: var(--gray);
+  font-weight: 600;
 }
 
 .show-group {
