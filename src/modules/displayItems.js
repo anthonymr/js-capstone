@@ -8,7 +8,7 @@ import CommentPopup from './commentPopup.js';
 
 // create new likes
 const createNewLike = async (id, likeCount) => {
-  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/likes';
+  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/cTATStFavmk0jriD21vx/likes';
   const res = await fetch(url, {
     method: 'POST',
     headers: {
@@ -41,7 +41,7 @@ const renderItems = (data) => {
       // create sho Img element
       const showImg = document.createElement('div');
       showImg.className = 'show-item-img';
-      showImg.innerHTML = `<img src='${i.image.original}'>`;
+      showImg.innerHTML = `<img src='${i.image.medium}'>`;
 
       // create show info
       const showInfo = document.createElement('div');
@@ -59,7 +59,6 @@ const renderItems = (data) => {
       // like button
       const btnLike = document.createElement('button');
       btnLike.className = 'btn-like';
-      btnLike.innerHTML = "<i class='fa-regular fa-heart'></i>";
 
       // like count
       const likeCount = document.createElement('span');
