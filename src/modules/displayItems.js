@@ -3,8 +3,9 @@ import '@fortawesome/fontawesome-free/js/fontawesome.js';
 import '@fortawesome/fontawesome-free/js/solid.js';
 import '@fortawesome/fontawesome-free/js/regular.js';
 
-import { listItemsContainer } from './docSelectors.js';
+import { itemCountContainer, listItemsContainer } from './docSelectors.js';
 import CommentPopup from './commentPopup.js';
+import itemCounter from './itemCounter.js';
 
 // create new likes
 const createNewLike = async (id, likeCount) => {
@@ -49,7 +50,7 @@ const renderItems = (data) => {
 
       // create tile for show info
       const title = document.createElement('h3');
-      title.className = 'show-title';
+      title.className = 'show-titles';
       title.innerText = i.name;
 
       // like action
@@ -102,6 +103,7 @@ const renderItems = (data) => {
 
       listItemsContainer.appendChild(item);
     });
+    itemCounter(itemCountContainer, listItemsContainer);
   } else {
     listItemsContainer.innerHTML = '<p class="no-data">No Data Found</p>';
   }
