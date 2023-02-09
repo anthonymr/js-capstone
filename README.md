@@ -23,7 +23,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 Leaderboard <a name="about-project"></a>
+# 📖 TV Show <a name="about-project"></a>
 
 You can use **TV Show** web app to see all your favorites TV shows information and schedules.
 
