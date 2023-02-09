@@ -7,6 +7,7 @@
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
+  - [Project Presentation Video](#project-presentation)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -52,6 +53,12 @@ You can use **TV Show** web app to see all your favorites TV shows information a
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo](https://anthonymr.github.io/js-capstone/dist/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Project Presentation Video <a name="project-presentation"></a>
+
+- [Project Presentation Video](https://drive.google.com/file/d/1whPngzAqGRB-SGMNa5XzRaMCYUGDvQzC/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
