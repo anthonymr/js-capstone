@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tv Guide</title>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="brand"><a href="" class="logo blue">Tv Logo</a></div>
+        <button class="navMenu" id="mobileMenu">
+          <i class="fa-solid fa-bars fa-2xl"></i>
+        </button>
+        <ul class="mobileNavs">
+          <button id="closeMenu" class="btn-cross">
+            <i class="fa-2xl fa-solid fa-xmark"></i>
+          </button>
+          <li class="nav-item"><a href="#" class="nav-link blue">Home</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link blue">Seasons</a>
+          </li>
+          <li class="nav-item"><a href="#" class="nav-link blue">Movies</a></li>
+        </ul>
+        <ul class="desktopNavs">
+          <li class="nav-item"><a href="#" class="nav-link blue">Home</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link blue">Seasons</a>
+          </li>
+          <li class="nav-item"><a href="#" class="nav-link blue">Movies</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-container">
+      <section class="tv-shows">
+        <h1 class="show-titles">Great Season Shows <span id="count-item">(0)</span></h1>
+        <ul class="show-group"></ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h3>Created by Eric and Anthony at Microverse Inc. under CC license</h3>
+    </footer>
+
+    <section id="comment-popup" class="hidden"></section>
+  </body>
+</html>
