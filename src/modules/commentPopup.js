@@ -17,27 +17,24 @@ export default class CommentPopup {
 
     this.#setNewCommentEvents();
 
-    this.#getTvShow()
-      .then((tvShow) => {
-        this.#drawPopup(tvShow);
-      });
-
-    this.#getComments(tvShowId)
-      .then((comments) => {
-        this.#drawComments(comments);
-      });
+    this.#getTvShow();
+    this.#getComments(tvShowId);
   }
 
-  destroy() {
+  destroy = () => {
     this.#hiddePopupModal();
 
     this.parentDomElement.innerHTML = '';
   }
 
-  #getTvShow = () => fetch(`${this.baseUrl}${this.endPoint}${this.id}`)
-    .then((resp) => resp.json())
+  #getTvShow = async () => {
+    const response = await fetch(`${this.baseUrl}${this.endPoint}${this.id}`);
+    const tvShows = await response.json();
 
-  #drawPopup(tvShow) {
+    this.#drawPopup(tvShows);
+  }
+
+  #drawPopup = (tvShow) => {
     this.#createDomElement('comment-popup__image', 'img', 'src', tvShow.image.medium);
     this.#createDomElement('comment-popup__title', 'h2', 'innerHTML', tvShow.name);
     this.#createDomElement('comment-popup__summary', 'span', 'innerHTML', tvShow.summary);
@@ -52,7 +49,7 @@ export default class CommentPopup {
     this.#showPopupModal();
   }
 
-  #createDomElement(id, elementType, attribute, attributeData, title = null) {
+  #createDomElement = (id, elementType, attribute, attributeData, title = null) => {
     this.auxDomElement = document.getElementById(id);
 
     if (title) {
@@ -66,7 +63,7 @@ export default class CommentPopup {
     this.auxDomElement.appendChild(newDomElement);
   }
 
-  #createBasicHTML() {
+  #createBasicHTML = () => {
     this.parentDomElement.innerHTML = `
       <div>
         <div class="comment-popup__x-mark">
@@ -95,7 +92,7 @@ export default class CommentPopup {
     `;
   }
 
-  #updateCommentCounter(count) {
+  #updateCommentCounter = (count) => {
     this.commentTitle = document.getElementById('comment-popup__comments_title');
     this.commentTitle.innerHTML = `Comments (${count})`;
   }
@@ -104,10 +101,14 @@ export default class CommentPopup {
 
   #hiddePopupModal = () => this.parentDomElement.classList.add('hidden')
 
-  #getComments = (id) => fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}?item_id=${id}`)
-    .then((response) => response.json())
+  #getComments = async (id) => {
+    const response = await fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}?item_id=${id}`);
+    const comments = await response.json();
 
-  #drawComments(comments) {
+    this.#drawComments(comments);
+  }
+
+  #drawComments = (comments) => {
     this.parentUl = document.getElementById('comment-popup__comments_list');
     this.parentUl.innerHTML = '';
 
@@ -134,8 +135,8 @@ export default class CommentPopup {
     this.#updateCommentCounter(commentAmount);
   }
 
-  #addNewComment(username, insight) {
-    fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}`, {
+  async #addNewComment(username, insight) {
+    const response = await fetch(`${this.involvApiBaseUrl}${this.involvApiCommentsEndpoint}`, {
       method: 'POST',
       body: JSON.stringify({
         item_id: this.id,
@@ -145,16 +146,16 @@ export default class CommentPopup {
       headers: {
         'Content-Type': 'application/json',
       },
-    })
-      .then(() => {
-        this.#getComments(this.id)
-          .then((comments) => {
-            this.#drawComments(comments);
-          });
-      });
+    });
+
+    if (!response.ok && response.status !== 201) {
+      return;
+    }
+
+    this.#getComments(this.id);
   }
 
-  #setNewCommentEvents() {
+  #setNewCommentEvents = () => {
     this.newCommentUserName = document.getElementById('comment-popup__new-comment-username');
     this.newCommentInsight = document.getElementById('comment-popup__new-comment-insight');
     this.newCommentSubmit = document.getElementById('comment-popup__new-comment-submit');
